@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datos sensibles
+data/
+datasets/
+*.dcm
+*.nii
+*.nrrd
+*.mha
+*.npy
+*.npz
+
+# Slicer / radiomics
+*.seg.nrrd
+*.mrml
+
+# OS
+.DS_Store
+Thumbs.db
