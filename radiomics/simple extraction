@@ -1,0 +1,11 @@
+imageType:
+  Original: {}
+featureClass:
+  shape: []
+  firstorder: []
+  glcm: []
+setting:
+  binWidth: 25
+  resampledPixelSpacing: null
+  interpolator: 'sitkBSpline'
+  normalize: true
