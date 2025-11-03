@@ -1,7 +1,7 @@
 # ---------- CONFIG ----------
 DATA_DIR = "/content/"  # carpeta con los CSV
 # Patrón: usa "Caso*_Reposo_[ABC].csv" y "Caso*_Estres_[ABC].csv".
-# Si quieres solo un caso fijo (p.ej. Caso01N), cambia a "Caso01N_Reposo_[ABC].csv", etc.
+# Si quieres solo un caso fijo (p.ej. Caso01N), cambia a "Caso01[ND]_Reposo_[ABC].csv", etc.
 
 import os, re, glob, unicodedata
 import numpy as np
