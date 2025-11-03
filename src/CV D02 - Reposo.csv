@@ -1,0 +1,84 @@
+MPI-D02 REPOSO,,,Valor,,,,,,
+Image type,Feature Class,Feature Name,A,B,C,Media,SD,CV,CV%
+diagnostics,Versions,PyRadiomics,v3.1.0.post2+g146e3bd,v3.1.0.post2+g146e3bd,v3.1.0.post2+g146e3bd,,,,
+diagnostics,Versions,Numpy,1.26.4,1.26.4,1.26.4,,,,
+diagnostics,Versions,SimpleITK,2.4.0rc2.dev213,2.4.0rc2.dev213,2.4.0rc2.dev213,,,,
+diagnostics,Versions,PyWavelet,1.6.0,1.6.0,1.6.0,,,,
+diagnostics,Versions,Python,3.9.10,3.9.10,3.9.10,,,,
+diagnostics,Configuration,Settings,"{'minimumROIDimensions': 2, 'minimumROISize': None, 'normalize': True, 'normalizeScale': 1, 'removeOutliers': None, 'resampledPixelSpacing': None, 'interpolator': 'sitkBSpline', 'preCrop': False, 'padDistance': 5, 'distances': [1], 'force2D': False, 'force2Ddimension': 0, 'resegmentRange': None, 'label': 1, 'additionalInfo': True, 'binWidth': 25, 'correctMask': True}","{'minimumROIDimensions': 2, 'minimumROISize': None, 'normalize': True, 'normalizeScale': 1, 'removeOutliers': None, 'resampledPixelSpacing': None, 'interpolator': 'sitkBSpline', 'preCrop': False, 'padDistance': 5, 'distances': [1], 'force2D': False, 'force2Ddimension': 0, 'resegmentRange': None, 'label': 1, 'additionalInfo': True, 'binWidth': 25, 'correctMask': True}","{'minimumROIDimensions': 2, 'minimumROISize': None, 'normalize': True, 'normalizeScale': 1, 'removeOutliers': None, 'resampledPixelSpacing': None, 'interpolator': 'sitkBSpline', 'preCrop': False, 'padDistance': 5, 'distances': [1], 'force2D': False, 'force2Ddimension': 0, 'resegmentRange': None, 'label': 1, 'additionalInfo': True, 'binWidth': 25, 'correctMask': True}",,,,
+diagnostics,Configuration,EnabledImageTypes,{'Original': {}},{'Original': {}},{'Original': {}},,,,
+diagnostics,Image-original,Hash,bb346d50531d75f0aedf39deaa6c16e1ce320765,88ce65b61e14e58f2d51da0d274c03e25f65228b,d9364e1b73d92cfa8fb32f7010a0b1c99476687a,,,,
+diagnostics,Image-original,Dimensionality,3D,3D,3D,,,,
+diagnostics,Image-original,Spacing,"(6.591340065002402, 6.591340065002404, 6.591340065002401)","(6.591340065002402, 6.591340065002404, 6.591340065002401)","(6.591340065002402, 6.591340065002404, 6.591340065002401)",,,,
+diagnostics,Image-original,Size,"(64, 64, 34)","(64, 64, 28)","(64, 64, 34)",,,,
+diagnostics,Image-original,Mean,1.136108398,1.344805036,1.201954561,,,,
+diagnostics,Image-original,Minimum,0,0,0,,,,
+diagnostics,Image-original,Maximum,139,117,102,,,,
+diagnostics,Mask-original,Hash,b5641fd716c15603c8cf83788660337043c10c67,cbd0c1855e773841922e0d3c82da8f404f2c730e,7d61f50bf1122e6c4f9bbf8baec30aac8637dfbc,,,,
+diagnostics,Mask-original,Spacing,"(6.591340065002402, 6.591340065002404, 6.591340065002401)","(6.591340065002402, 6.591340065002404, 6.591340065002401)","(6.591340065002402, 6.591340065002404, 6.591340065002401)",,,,
+diagnostics,Mask-original,Size,"(64, 64, 34)","(64, 64, 28)","(64, 64, 34)",,,,
+diagnostics,Mask-original,BoundingBox,"(26, 25, 13, 12, 13, 13)","(25, 25, 8, 14, 14, 13)","(26, 26, 13, 12, 10, 10)",,,,
+diagnostics,Mask-original,VoxelNum,834,1086,583,,,,
+diagnostics,Mask-original,VolumeNum,1,1,1,,,,
+diagnostics,Mask-original,CenterOfMassIndex,"(31.52517985611511, 30.86570743405276, 18.677458033573142)","(31.497237569060772, 30.98987108655617, 14.85451197053407)","(31.32761578044597, 30.619210977701545, 17.895368782161235)",,,,
+diagnostics,Mask-original,CenterOfMass,"(33.94942719059971, -60.853307829568394, 972.4221895509253)","(33.83159160308038, -61.02315564141543, 974.1978473875718)","(34.42101233184309, -64.48341997940247, 976.9930622316268)",,,,
+original,shape,Elongation,0.887689952,0.9258240295,0.8722408036,0.895251595,0.0275803256,0.03080734595,3.080734595
+original,shape,Flatness,0.8787391682,0.9151725281,0.7329381494,0.8422832819,0.09643192379,0.1144887069,11.44887069
+original,shape,LeastAxisLength,70.2253482,76.07371515,54.19258537,66.83054958,11.32870043,0.1695138002,16.95138002
+original,shape,MajorAxisLength,79.91603282,83.12499864,73.93882474,78.9932854,4.662085889,0.05901876173,5.901876173
+original,shape,Maximum2DDiameterColumn,88.43210669,94.37362762,80.18711274,87.66428235,7.124357285,0.08126864322,8.126864322
+original,shape,Maximum2DDiameterRow,94.37362762,95.97135998,76.86757368,89.07085376,10.59850087,0.1189895507,11.89895507
+original,shape,Maximum2DDiameterSlice,89.65191751,97.98731454,84.41033865,90.68319024,6.846985552,0.07550446267,7.550446267
+original,shape,Maximum3DDiameter,96.42299241,99.96262144,86.94574694,94.44378693,6.730356323,0.07126309249,7.126309249
+original,shape,MeshVolume,235261.4398,307711.9882,163944.4228,235639.2836,71884.52751,0.30506173,30.506173
+original,shape,MinorAxisLength,70.94065933,76.95912119,64.4924599,70.79741348,6.234564978,0.08806204452,8.806204452
+original,shape,Sphericity,0.6970196074,0.7281223162,0.7756562309,0.7335993848,0.03960338813,0.05398503454,5.398503454
+original,shape,SurfaceArea,26440.70088,30272.11237,18675.8024,25129.53855,5908.295966,0.2351135877,23.51135877
+original,shape,SurfaceVolumeRatio,0.1123885874,0.09837807276,0.1139154482,0.1082273694,0.008563837335,0.07912820369,7.912820369
+original,shape,VoxelVolume,238829.0805,310993.2631,166951.2637,238924.5358,72021.04713,0.3014384726,30.14384726
+original,firstorder,10Percentile,7.194679243,6.093472511,8.455956876,7.24803621,1.182145642,0.1630987494,16.30987494
+original,firstorder,90Percentile,13.61637613,11.2039984,11.79731568,12.20589674,1.25701847,0.1029845244,10.29845244
+original,firstorder,Energy,93518.46727,81263.11441,61100.87413,78627.48527,16368.71992,0.2081806364,20.81806364
+original,firstorder,Entropy,-3.20E-16,-3.20E-16,-3.20E-16,-3.20E-16,0,0.00E+00,0.00E+00
+original,firstorder,InterquartileRange,3.826709504,3.066315534,2.056220806,2.983081948,0.8881742115,0.2977371145,29.77371145
+original,firstorder,Kurtosis,2.189784102,2.214258141,2.239488117,2.21451012,0.02485296524,0.01122278242,1.122278242
+original,firstorder,Maximum,16.48640826,13.13464151,12.95393989,14.19166322,1.989360289,0.1401780932,14.01780932
+original,firstorder,MeanAbsoluteDeviation,2.015366449,1.664470793,1.068935178,1.58292414,0.4784562988,0.3022610413,30.22610413
+original,firstorder,Mean,10.31690025,8.421078102,10.15749723,9.631825192,1.051562512,0.1091758302,10.91758302
+original,firstorder,Median,10.08862831,8.251250109,10.12663628,9.488838232,1.071951222,0.1129697015,11.29697015
+original,firstorder,Minimum,5.604203106,3.481425945,6.785277471,5.290302174,1.674144281,0.3164553225,31.64553225
+original,firstorder,Range,10.88220515,9.65321557,6.168662417,8.901361046,2.445063434,0.274684222,27.4684222
+original,firstorder,RobustMeanAbsoluteDeviation,1.546108066,1.27202965,0.8204243315,1.212854016,0.3664430891,0.3021328901,30.21328901
+original,firstorder,RootMeanSquared,10.58926129,8.650312932,10.23739438,9.825656204,1.032969717,0.1051298453,10.51298453
+original,firstorder,Skewness,0.2302460837,0.18517713,-0.05553637869,0.1199622784,0.153647768,1.280800683,128.0800683
+original,firstorder,TotalEnergy,26780491.06,23270977.09,17497200.94,22516223.03,4687441.64,0.2081806364,20.81806364
+original,firstorder,Uniformity,1,1,1,1,0,0,0
+original,firstorder,Variance,5.694024081,3.913357413,1.629493869,3.745625121,2.037449889,0.5439545666,54.39545666
+original,glcm,Autocorrelation,1,1,1,1,0,0,0
+original,glcm,ClusterProminence,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,ClusterShade,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,ClusterTendency,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,Contrast,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,Correlation,1,1,1,1,0,0,0
+original,glcm,DifferenceAverage,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,DifferenceEntropy,-3.20E-16,-3.20E-16,-3.20E-16,-3.20E-16,0,0.00E+00,0.00E+00
+original,glcm,DifferenceVariance,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,Id,1,1,1,1,0,0,0
+original,glcm,Idm,1,1,1,1,0,0,0
+original,glcm,Idmn,1,1,1,1,0,0,0
+original,glcm,Idn,1,1,1,1,0,0,0
+original,glcm,Imc1,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,Imc2,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,InverseVariance,0,0,0,0,0,#DIV/0!,#DIV/0!
+original,glcm,JointAverage,1,1,1,1,0,0,0
+original,glcm,JointEnergy,1,1,1,1,0,0,0
+original,glcm,JointEntropy,-3.20E-16,-3.20E-16,-3.20E-16,-3.20E-16,0,0.00E+00,0.00E+00
+original,glcm,MCC,1,1,1,1,0,0,0
+original,glcm,MaximumProbability,1,1,1,1,0,0,0
+original,glcm,SumAverage,2,2,2,2,0,0,0
+original,glcm,SumEntropy,-3.20E-16,-3.20E-16,-3.20E-16,-3.20E-16,0,0.00E+00,0.00E+00
+original,glcm,SumSquares,0,0,0,0,0,#DIV/0!,#DIV/0!
+,,,,,,,,,
+,,,,Valores entre 0 y menores o iguales a 5.0,18,,,,
+,,,,Valores entre mayor a 5.0 y menores o iguales a 15.0,14,,,,
+,,,,Valores mayores a 15.0,14,,,,
