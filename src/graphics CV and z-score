@@ -1,0 +1,120 @@
+# ---------- CONFIG ----------
+DATA_DIR = "/content/"  # carpeta con los CSV
+# Patrón: usa "Caso*_Reposo_[ABC].csv" y "Caso*_Estres_[ABC].csv".
+# Si quieres solo un caso fijo (p.ej. Caso01N), cambia a "Caso01N_Reposo_[ABC].csv", etc.
+
+import os, re, glob, unicodedata
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+plt.rcParams["figure.dpi"] = 110
+
+# ---------- utilidades ----------
+fname_re = re.compile(r"(?P<caso>Caso[\w\-]+)_(?P<cond>Reposo|Estres)_(?P<recon>A|B|C)\.csv$", re.I)
+
+def parse_meta(path):
+    m = fname_re.search(os.path.basename(path))
+    return None if not m else {k: v.title() if k=="caso" else v.capitalize() if k=="cond" else v.upper()
+                               for k,v in m.groupdict().items()}
+
+def norm_col(s):
+    s = s.strip().lower()
+    s = "".join(c for c in unicodedata.normalize("NFKD", s) if not unicodedata.combining(c))
+    s = s.replace("  ", " ")
+    return s
+
+def load_custom_csv(path):
+    df = pd.read_csv(path, sep=None, engine="python")  # autodetecta separador
+    df.columns = [norm_col(c) for c in df.columns]
+    # mapeo robusto
+    fam_col  = [c for c in df.columns if "familia" in c][0]
+    name_col = [c for c in df.columns if "nombre"  in c][0]
+    val_col  = [c for c in df.columns if "valor"   in c][0]
+    df[val_col] = pd.to_numeric(df[val_col], errors="coerce")
+    # clave única de característica
+    df["feature_key"] = df[fam_col].astype(str) + "|" + df[name_col].astype(str)
+    # si hay duplicados, promedia
+    s = df.groupby("feature_key", as_index=True)[val_col].mean()
+    s.name = "valor"
+    return s
+
+def zscore_by_row(M):
+    mu = M.mean(axis=1)
+    sd = M.std(axis=1, ddof=1).replace(0, np.nan)
+    return (M.sub(mu, axis=0)).div(sd, axis=0)
+
+def cv_percent(row, mu_eps=1e-8):
+    mu, sd = np.nanmean(row), np.nanstd(row, ddof=1)
+    if np.isnan(mu) or abs(mu) < mu_eps:
+        return np.nan
+    return (sd/abs(mu))*100.0  
+
+def heatmap(df, title, out_png):
+    fig, ax = plt.subplots(figsize=(10, max(4, 0.28*df.shape[0])))
+    im = ax.imshow(df.values, aspect="auto")
+    ax.set_title(title)
+    ax.set_yticks(np.arange(df.shape[0])); ax.set_yticklabels(df.index, fontsize=7)
+    ax.set_xticks(np.arange(df.shape[1])); ax.set_xticklabels(df.columns, rotation=0, ha="right")
+    plt.colorbar(im, ax=ax)
+    plt.tight_layout(); plt.savefig(out_png, dpi=220, bbox_inches="tight"); plt.show()
+
+# ---------- carga de archivos .csv----------
+files = sorted(glob.glob(os.path.join(DATA_DIR, "Caso*_Reposo_[ABC].csv"))) + \
+        sorted(glob.glob(os.path.join(DATA_DIR, "Caso*_Estres_[ABC].csv")))
+assert files, "No hay CSV en DATA_DIR con ese patrón."
+
+rows = []
+for f in files:
+    meta = parse_meta(f)
+    if not meta:
+        print("Ignorado:", os.path.basename(f))
+        continue
+    s = load_custom_csv(f)
+    tmp = s.to_frame()
+    tmp["feature"] = tmp.index
+    tmp["caso"], tmp["cond"], tmp["recon"] = meta["caso"], meta["cond"], meta["recon"]
+    rows.append(tmp.reset_index(drop=True))
+df = pd.concat(rows, ignore_index=True)
+cases = sorted(df["caso"].unique())
+print("Casos detectados:", cases)
+
+# ---------- gráficos por condición (reposo/estrés) ----------
+for caso in cases:
+    for cond in ["Reposo","Estres"]:
+        sub = df.query("caso == @caso and cond == @cond")
+        if sub.empty:
+            continue
+
+        P = sub.pivot_table(index="feature", columns="recon", values="valor", aggfunc="mean")
+        # filtra características sin datos o constantes entre reconstrucciones A/B/C
+        P = P.dropna(how="all")
+        keep = P.std(axis=1, ddof=1).fillna(0) > 0
+        P = P.loc[keep]
+        if P.empty:
+            print(f"Sin características válidas: {caso} - {cond}")
+            continue
+
+        # 1) Z-score por fila 
+        Z = zscore_by_row(P)
+        out1 = os.path.join(DATA_DIR, f"heatmap_zscore_{caso}_{cond}.png")
+        heatmap(Z,  f"Z-score por característica Radiómica\n{caso} - {cond}", out1)
+
+        # 2) CV% ASCENDENTE
+        CV = P.apply(cv_percent, axis=1).to_frame(name="CV%")
+        s  = CV["CV%"].dropna().sort_values()     # orden ascendente
+        # Heatmap de una columna ordenado
+        CVm = s.to_frame(name="CV%")
+        out2 = os.path.join(DATA_DIR, f"heatmap_cv_{caso}_{cond}.png")
+        heatmap(CVm, f"CV% entre Reconstrucciones A,B,C\n{caso} - {cond}", out2)
+
+        # 3) Barras horizontales de CV% ordenadas
+        fig, ax = plt.subplots(figsize=(10, max(3, 0.25*len(s))))
+        ax.barh(s.index, s.values)
+        ax.set_xlabel("CV (%)"); ax.set_title(f"CV%\n{caso} - {cond}")
+        for i, v in enumerate(s.values):
+            ax.text(v, i, f"{v:.1f}%", va="center", ha="left", fontsize=7)
+        out3 = os.path.join(DATA_DIR, f"bars_cv_{caso}_{cond}.png")
+        plt.tight_layout(); plt.savefig(out3, dpi=220, bbox_inches="tight"); plt.show()
+
+        print("Guardado:", out1, "y", out2, "y", out3)
